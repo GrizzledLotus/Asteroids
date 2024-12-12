@@ -16,6 +16,10 @@ def main():
     # Initialize pygame when we actually start the game
     pygame.init()
     
+    # Create game FPS
+    game_clock = pygame.time.Clock()
+    dt = 0
+
     # Create the screen
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     
@@ -25,12 +29,15 @@ def main():
             if event.type == pygame.QUIT:
                 return
     
-    # Fill screen with black
-    screen.fill("black")
+        # Fill screen with black
+        screen.fill("black")
     
-    # Update display
-    pygame.display.flip()
+        # Update display
+        pygame.display.flip()
 
-    
+        # Tick Method
+        dt = game_clock.tick(60)/1000
+        # dt = game_clock.tick()/1000
+
 if __name__ == "__main__":
     main()
