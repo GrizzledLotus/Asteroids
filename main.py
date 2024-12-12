@@ -33,19 +33,20 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-    
+
+        player.update(dt)
+
         # Fill screen with black
         screen.fill("black")
     
         # Render player on screen
         player.draw(screen)
-
+        
         # Update display
         pygame.display.flip()
 
-        # Tick Method
+        # Limit framerate to 60 FPS
         dt = game_clock.tick(60)/1000
-        # dt = game_clock.tick()/1000
 
 if __name__ == "__main__":
     main()
