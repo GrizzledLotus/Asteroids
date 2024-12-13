@@ -57,6 +57,11 @@ def main():
         for sprite in updatables:
             sprite.update(dt)
         
+        for asteroid in asteroids:
+            if player.is_colliding_with(asteroid):
+                print("Game Over!")
+                running = False
+
         # Fill screen with black
         screen.fill("black")
     
