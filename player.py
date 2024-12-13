@@ -1,15 +1,19 @@
+import pygame
 from circleshape import CircleShape
 from constants import *
 
 class Player(CircleShape):
     def __init__(self, x, y):
+        print("Initializing Player")
         super().__init__(x, y, PLAYER_RADIUS)
         # Add any additional initialization for the Player class here
         self.rotation = 0
+        print(f"Player groups after init: {self.groups()}")
+
     
     # Add any additional methods specific to the Player class here
     def draw(self, screen):
-        pygame.draw.polygon(screen, 'white', self.triangle(), line_width=2)
+        pygame.draw.polygon(screen, 'white', self.triangle(), width=2)
 
     # in the player class
     def triangle(self):

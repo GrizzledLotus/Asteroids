@@ -18,27 +18,33 @@ print(f"Screen height: {SCREEN_HEIGHT}")
 def main():
     # Initialize pygame when we actually start the game
     pygame.init()
-    
-    # Create game FPS
-    game_clock = pygame.time.Clock()
-    dt = 0
-
     # Create the screen
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    
-    # Create player instance
-    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
-
+    # Create game FPS
+    game_clock = pygame.time.Clock()
+     
     # Creating groups
-    updatable = pygame.sprite.Group()
-    drawable = pygame.sprite.Group()
+    updatables = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    
+    print(f"Updatables: {len(updatables)}")
+    print(f"Drawables: {len(drawables)}")
+    print(f"Asteroids: {len(asteroids)}")
 
-    Player.containers = (updatable, drawable)
-    Asteroid.containers = (asteroids, updatable, drawable)
-    AsteroidField.containers = updatable
+    Player.containers = (updatables, drawables)
+    Asteroid.containers = (asteroids, updatables, drawables)
+    AsteroidField.containers = (updatables,)
+        
+    # Create instances
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     asteroid_field = AsteroidField()
+    
+    print(f"Player groups: {player.groups()}")
+    print(f"Asteroid field groups: {asteroid_field.groups()}")
 
+    dt = 0
+    
     # Start game loop
     running = True
     while running:
@@ -48,7 +54,7 @@ def main():
 
         # player.update(dt)
         # Update all updatable sprites
-        for sprite in updatable:
+        for sprite in updatables:
             sprite.update(dt)
         
         # Fill screen with black
@@ -57,7 +63,7 @@ def main():
         # Render player on screen
         # player.draw(screen)
         # Draw all drawable sprites
-        for sprite in drawable:
+        for sprite in drawables:
             sprite.draw(screen)
 
         # Update display
