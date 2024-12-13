@@ -9,9 +9,9 @@ from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
 
-print("Starting asteroids!")
-print(f"Screen width: {SCREEN_WIDTH}")
-print(f"Screen height: {SCREEN_HEIGHT}")
+# print("Starting asteroids!")
+# print(f"Screen width: {SCREEN_WIDTH}")
+# print(f"Screen height: {SCREEN_HEIGHT}")
 
 # pygame.init()
 # screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -30,9 +30,9 @@ def main():
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
     
-    print(f"Updatables: {len(updatables)}")
-    print(f"Drawables: {len(drawables)}")
-    print(f"Asteroids: {len(asteroids)}")
+    # print(f"Updatables: {len(updatables)}")
+    # print(f"Drawables: {len(drawables)}")
+    # print(f"Asteroids: {len(asteroids)}")
 
     Player.containers = (updatables, drawables)
     Asteroid.containers = (asteroids, updatables, drawables)
@@ -43,8 +43,8 @@ def main():
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     asteroid_field = AsteroidField()
     
-    print(f"Player groups: {player.groups()}")
-    print(f"Asteroid field groups: {asteroid_field.groups()}")
+    # print(f"Player groups: {player.groups()}")
+    # print(f"Asteroid field groups: {asteroid_field.groups()}")
 
     dt = 0
     
@@ -64,6 +64,11 @@ def main():
             if player.is_colliding_with(asteroid):
                 print("Game Over!")
                 running = False
+
+            for shot in shots:
+                if asteroid.is_colliding_with(shot):
+                    shot.kill()
+                    asteroid.kill()
 
         # Fill screen with black
         screen.fill("black")

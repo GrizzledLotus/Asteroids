@@ -3,14 +3,14 @@ import pygame
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
     def __init__(self, x, y, radius):
-        print(f"Initializing CircleShape for {self.__class__.__name__}")
+        # print(f"Initializing CircleShape for {self.__class__.__name__}")
 
         # we will be using this later
         if hasattr(self, "containers"):
-            print(f"Found containers: {self.containers}")
+            # print(f"Found containers: {self.containers}")
             super().__init__(self.containers)
         else:
-            print("No containers found")
+            # print("No containers found")
             super().__init__()
 
         self.position = pygame.Vector2(x, y)
